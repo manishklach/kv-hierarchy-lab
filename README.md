@@ -118,11 +118,21 @@ These are **simulator findings on synthetic traces**, not runtime performance cl
 
 ### Regret-Aware Ablation
 
-A dedicated ablation study (see `scripts/run_regret_ablation.py`) sweeps `regret_horizon` and `regret_weight` parameters to isolate the policy's theoretical advantages on simulated traces without prefetch noise:
+A dedicated ablation study (`scripts/run_regret_ablation.py`) sweeps `regret_horizon` and `regret_weight` across 3 independent seeds to isolate the regret signal's contribution. All results below are **simulator metrics on synthetic traces** with mean ± std across seeds. Prefetch is disabled to isolate eviction behavior.
 
-- **Adversarial Bursts:** Under constrained capacity on `adversarial_burst`, baseline `lru` experienced `3.66 ms` average latency. `cost_aware` dropped this to `3.22 ms`. The best Regret-Aware config (`weight=1.0, horizon=12`) outperformed both at `2.96 ms` latency, minimizing thrashing by anchoring high-regret pages locally.
-- **Horizon Sensitivity:** Shorter horizons (12-24 steps) generally yielded better latency characteristics than long horizons (96 steps) under severe pressure, suggesting that "forgetting" past regret is necessary when working sets turn over continuously.
-- **Failure/Neutral Case:** On purely recency-heavy traces like `chat_continuation`, `regret_aware` provided exactly identical hit rates and latency as bare `lru` (`0.323 ms`), confirming that regret logic offers no advantage when older pages inherently never return.
+**Key findings:**
+
+- **Adversarial bursts, constrained capacity:** LRU averaged `6.15 ± 0.10 ms` latency with a 0% fast-tier hit rate. The best regret-aware config (`w=1.0, h=64`) achieved `5.94 ± 0.14 ms` latency — a modest `3.4%` improvement — while `w=12.0, h=64` cut bytes moved by `7.1%`. Under medium capacity, regret-aware (`w=12.0, h=24`) reduced latency by `6.6%` versus LRU while cutting bytes moved by `9.1%`.
+- **Horizon sensitivity:** Under adversarial pressure, longer horizons (64 steps) consistently delivered lower latency than short horizons (8 steps) at the same weight, suggesting that durable regret memory helps when the trace actively revisits recently-evicted pages.
+- **Weight sensitivity:** Higher regret weights (6.0, 12.0) improved hit rates on `chat_continuation` under constrained capacity — `w=12.0` achieved `0.61` hit rate versus LRU's `0.66` and `w=1.0`'s `0.53` — but the relationship is non-monotonic and workload-dependent.
+- **Failure / neutral cases:** On `periodic_reuse` under both capacity levels, all regret-aware variants performed identically to LRU (0% fast-tier hit rate, 640 misses). The periodic structure completely overwhelms finite-horizon regret tracking. Only `cost_aware` (which penalises large pages) salvaged any hits there.
+
+![Latency vs regret horizon](artifacts/regret_ablation/plots/latency_vs_horizon.png)
+![Hit rate vs regret weight](artifacts/regret_ablation/plots/hit_rate_vs_weight.png)
+![Latency vs bytes moved tradeoff](artifacts/regret_ablation/plots/tradeoff.png)
+![Failure case: chat continuation](artifacts/regret_ablation/plots/failure_case.png)
+
+Ablation artifacts including raw results, aggregated summaries with variance, and run metadata are committed under [artifacts/regret_ablation](./artifacts/regret_ablation).
 
 
 ## Benchmarks And Metrics

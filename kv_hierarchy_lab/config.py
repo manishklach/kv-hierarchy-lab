@@ -12,6 +12,7 @@ class TierConfig:
     read_latency_ms: float
     write_latency_ms: float
     bandwidth_bytes_per_ms: float
+    # Reserved for v0.3 overlap / concurrency modeling (see MemoryTier).
     concurrency_limit: int | None = None
 
 

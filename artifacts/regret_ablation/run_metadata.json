@@ -1,0 +1,44 @@
+{
+  "command": "python scripts/run_regret_ablation.py --output-dir artifacts/regret_ablation",
+  "seeds": [
+    7,
+    42,
+    91
+  ],
+  "weights": [
+    1.0,
+    6.0,
+    12.0
+  ],
+  "horizons": [
+    8,
+    24,
+    64
+  ],
+  "workloads": [
+    "chat_continuation",
+    "periodic_reuse",
+    "adversarial_burst"
+  ],
+  "workload_configs": {
+    "chat_continuation": {
+      "num_pages": 80,
+      "length": 512
+    },
+    "periodic_reuse": {
+      "num_pages": 96,
+      "length": 640,
+      "period": 11
+    },
+    "adversarial_burst": {
+      "num_pages": 112,
+      "length": 640,
+      "burst_size": 14
+    }
+  },
+  "scenarios": [
+    "medium",
+    "constrained"
+  ],
+  "total_runs": 198
+}

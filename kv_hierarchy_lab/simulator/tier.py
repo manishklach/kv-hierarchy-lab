@@ -12,6 +12,9 @@ class MemoryTier:
     read_latency_ms: float
     write_latency_ms: float
     bandwidth_bytes_per_ms: float
+    # Reserved for v0.3 overlap / concurrency modeling.  Not consumed by
+    # the v0.1 synchronous engine; included so tier configs remain stable
+    # across versions.
     concurrency_limit: int | None = None
     resident_pages: dict[str, int] = field(default_factory=dict)
     used_bytes: int = 0
