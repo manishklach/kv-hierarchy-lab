@@ -1,0 +1,2057 @@
+[
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "lru",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "cost_aware",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w1.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w1.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w1.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w6.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w6.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w6.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w12.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w12.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w12.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 17,
+      "eviction_count": 2,
+      "avg_latency_ms": 0.32308964843750043,
+      "overall_hit_rate": 0.93359375,
+      "bytes_moved": 77460,
+      "demand_bytes_moved": 77460,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.93359375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 61464,
+        "tier1_gpu_overflow": 7998,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "lru",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "cost_aware",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w1.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w1.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w1.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w6.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w6.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w6.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w12.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w12.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w12.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 9,
+      "eviction_count": 0,
+      "avg_latency_ms": 0.14788437500000304,
+      "overall_hit_rate": 0.971875,
+      "bytes_moved": 36846,
+      "demand_bytes_moved": 36846,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 36846,
+        "tier1_gpu_overflow": 0,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "lru",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 318,
+      "eviction_count": 458,
+      "avg_latency_ms": 2.380193593749998,
+      "overall_hit_rate": 0.006249999999999978,
+      "bytes_moved": 3271108,
+      "demand_bytes_moved": 3271108,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier1_gpu_overflow": 0.371875,
+        "tier2_host_ram": 0.325,
+        "tier0_gpu_fast": 0.00625
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63842,
+        "tier1_gpu_overflow": 127094,
+        "tier2_host_ram": 215972,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "cost_aware",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 266,
+      "eviction_count": 412,
+      "avg_latency_ms": 2.35430109375,
+      "overall_hit_rate": 0.16874999999999996,
+      "bytes_moved": 2856308,
+      "demand_bytes_moved": 2856308,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.16875,
+        "tier1_gpu_overflow": 0.190625,
+        "tier2_host_ram": 0.34375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63732,
+        "tier1_gpu_overflow": 126860,
+        "tier2_host_ram": 214992,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w1.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 265,
+      "eviction_count": 405,
+      "avg_latency_ms": 2.3237700000000014,
+      "overall_hit_rate": 0.171875,
+      "bytes_moved": 2822294,
+      "demand_bytes_moved": 2822294,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.171875,
+        "tier1_gpu_overflow": 0.203125,
+        "tier2_host_ram": 0.328125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63732,
+        "tier1_gpu_overflow": 126882,
+        "tier2_host_ram": 214992,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w1.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 265,
+      "eviction_count": 404,
+      "avg_latency_ms": 2.3185801562500017,
+      "overall_hit_rate": 0.171875,
+      "bytes_moved": 2818312,
+      "demand_bytes_moved": 2818312,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.171875,
+        "tier1_gpu_overflow": 0.20625,
+        "tier2_host_ram": 0.325
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63732,
+        "tier1_gpu_overflow": 126858,
+        "tier2_host_ram": 214992,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w1.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 266,
+      "eviction_count": 401,
+      "avg_latency_ms": 2.296302656250001,
+      "overall_hit_rate": 0.16874999999999996,
+      "bytes_moved": 2810464,
+      "demand_bytes_moved": 2810464,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.16875,
+        "tier1_gpu_overflow": 0.225,
+        "tier2_host_ram": 0.309375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63732,
+        "tier1_gpu_overflow": 126858,
+        "tier2_host_ram": 215094,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w6.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 263,
+      "eviction_count": 403,
+      "avg_latency_ms": 2.3192464062500004,
+      "overall_hit_rate": 0.17812499999999998,
+      "bytes_moved": 2805024,
+      "demand_bytes_moved": 2805024,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.178125,
+        "tier1_gpu_overflow": 0.2,
+        "tier2_host_ram": 0.325
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63748,
+        "tier1_gpu_overflow": 126858,
+        "tier2_host_ram": 215116,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w6.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 263,
+      "eviction_count": 398,
+      "avg_latency_ms": 2.2927732812500015,
+      "overall_hit_rate": 0.17812499999999998,
+      "bytes_moved": 2784056,
+      "demand_bytes_moved": 2784056,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.178125,
+        "tier1_gpu_overflow": 0.215625,
+        "tier2_host_ram": 0.309375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63748,
+        "tier1_gpu_overflow": 126858,
+        "tier2_host_ram": 214866,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w6.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 267,
+      "eviction_count": 403,
+      "avg_latency_ms": 2.302606250000001,
+      "overall_hit_rate": 0.16562500000000002,
+      "bytes_moved": 2823054,
+      "demand_bytes_moved": 2823054,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.165625,
+        "tier1_gpu_overflow": 0.225,
+        "tier2_host_ram": 0.3125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63748,
+        "tier1_gpu_overflow": 126858,
+        "tier2_host_ram": 215094,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w12.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 263,
+      "eviction_count": 402,
+      "avg_latency_ms": 2.3138904687500004,
+      "overall_hit_rate": 0.17812499999999998,
+      "bytes_moved": 2800740,
+      "demand_bytes_moved": 2800740,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.178125,
+        "tier1_gpu_overflow": 0.203125,
+        "tier2_host_ram": 0.321875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63748,
+        "tier1_gpu_overflow": 126858,
+        "tier2_host_ram": 215116,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w12.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 263,
+      "eviction_count": 397,
+      "avg_latency_ms": 2.2874379687500013,
+      "overall_hit_rate": 0.17812499999999998,
+      "bytes_moved": 2779756,
+      "demand_bytes_moved": 2779756,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.178125,
+        "tier1_gpu_overflow": 0.21875,
+        "tier2_host_ram": 0.30625
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63748,
+        "tier1_gpu_overflow": 126858,
+        "tier2_host_ram": 214742,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "medium",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w12.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 267,
+      "eviction_count": 404,
+      "avg_latency_ms": 2.307858593750001,
+      "overall_hit_rate": 0.16562500000000002,
+      "bytes_moved": 2826100,
+      "demand_bytes_moved": 2826100,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.165625,
+        "tier1_gpu_overflow": 0.221875,
+        "tier2_host_ram": 0.315625
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 63972,
+        "tier1_gpu_overflow": 126986,
+        "tier2_host_ram": 214968,
+        "tier3_nvme_like": 4350
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "lru",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 35,
+      "eviction_count": 28,
+      "avg_latency_ms": 0.35294453125000036,
+      "overall_hit_rate": 0.86328125,
+      "bytes_moved": 256774,
+      "demand_bytes_moved": 256774,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.86328125,
+        "tier1_gpu_overflow": 0.0703125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28894,
+        "tier1_gpu_overflow": 44972,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "cost_aware",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 83,
+      "eviction_count": 76,
+      "avg_latency_ms": 0.4180490234375009,
+      "overall_hit_rate": 0.67578125,
+      "bytes_moved": 654644,
+      "demand_bytes_moved": 654644,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.67578125,
+        "tier1_gpu_overflow": 0.2578125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28656,
+        "tier1_gpu_overflow": 45026,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w1.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 91,
+      "eviction_count": 84,
+      "avg_latency_ms": 0.4288654296875007,
+      "overall_hit_rate": 0.64453125,
+      "bytes_moved": 720604,
+      "demand_bytes_moved": 720604,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.64453125,
+        "tier1_gpu_overflow": 0.2890625
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28566,
+        "tier1_gpu_overflow": 45230,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w1.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 83,
+      "eviction_count": 76,
+      "avg_latency_ms": 0.4180619140625008,
+      "overall_hit_rate": 0.67578125,
+      "bytes_moved": 654776,
+      "demand_bytes_moved": 654776,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.67578125,
+        "tier1_gpu_overflow": 0.2578125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28566,
+        "tier1_gpu_overflow": 45230,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w1.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 80,
+      "eviction_count": 73,
+      "avg_latency_ms": 0.41404238281250083,
+      "overall_hit_rate": 0.6875,
+      "bytes_moved": 630416,
+      "demand_bytes_moved": 630416,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.6875,
+        "tier1_gpu_overflow": 0.24609375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28656,
+        "tier1_gpu_overflow": 45026,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w6.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 94,
+      "eviction_count": 87,
+      "avg_latency_ms": 0.43249785156249954,
+      "overall_hit_rate": 0.6328125,
+      "bytes_moved": 741000,
+      "demand_bytes_moved": 741000,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.6328125,
+        "tier1_gpu_overflow": 0.30078125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28804,
+        "tier1_gpu_overflow": 44878,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w6.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 68,
+      "eviction_count": 61,
+      "avg_latency_ms": 0.39772441406250014,
+      "overall_hit_rate": 0.734375,
+      "bytes_moved": 530520,
+      "demand_bytes_moved": 530520,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.734375,
+        "tier1_gpu_overflow": 0.19921875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28804,
+        "tier1_gpu_overflow": 44878,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w6.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 71,
+      "eviction_count": 64,
+      "avg_latency_ms": 0.40185703125000044,
+      "overall_hit_rate": 0.72265625,
+      "bytes_moved": 556038,
+      "demand_bytes_moved": 556038,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.72265625,
+        "tier1_gpu_overflow": 0.2109375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28776,
+        "tier1_gpu_overflow": 44906,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w12.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 93,
+      "eviction_count": 86,
+      "avg_latency_ms": 0.4310978515624998,
+      "overall_hit_rate": 0.63671875,
+      "bytes_moved": 732264,
+      "demand_bytes_moved": 732264,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.63671875,
+        "tier1_gpu_overflow": 0.296875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28722,
+        "tier1_gpu_overflow": 45110,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w12.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 80,
+      "eviction_count": 73,
+      "avg_latency_ms": 0.41366328124999996,
+      "overall_hit_rate": 0.6875,
+      "bytes_moved": 626534,
+      "demand_bytes_moved": 626534,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.6875,
+        "tier1_gpu_overflow": 0.24609375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28918,
+        "tier1_gpu_overflow": 44878,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "chat_continuation",
+    "policy": "regret_aware_w12.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 256,
+      "miss_count": 62,
+      "eviction_count": 55,
+      "avg_latency_ms": 0.3895677734375003,
+      "overall_hit_rate": 0.7578125,
+      "bytes_moved": 480596,
+      "demand_bytes_moved": 480596,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.7578125,
+        "tier1_gpu_overflow": 0.17578125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28870,
+        "tier1_gpu_overflow": 44734,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4220
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "lru",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 320,
+      "eviction_count": 313,
+      "avg_latency_ms": 0.48403765624999984,
+      "overall_hit_rate": 0.0,
+      "bytes_moved": 2591608,
+      "demand_bytes_moved": 2591608,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier1_gpu_overflow": 0.971875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28722,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "cost_aware",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 146,
+      "eviction_count": 139,
+      "avg_latency_ms": 0.2966310937499978,
+      "overall_hit_rate": 0.54375,
+      "bytes_moved": 1167204,
+      "demand_bytes_moved": 1167204,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.54375,
+        "tier1_gpu_overflow": 0.428125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28722,
+        "tier1_gpu_overflow": 12296,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w1.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 189,
+      "eviction_count": 182,
+      "avg_latency_ms": 0.34319515624999863,
+      "overall_hit_rate": 0.40937500000000004,
+      "bytes_moved": 1522424,
+      "demand_bytes_moved": 1522424,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.409375,
+        "tier1_gpu_overflow": 0.5625
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28722,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w1.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 212,
+      "eviction_count": 205,
+      "avg_latency_ms": 0.3679720312499986,
+      "overall_hit_rate": 0.3375,
+      "bytes_moved": 1710768,
+      "demand_bytes_moved": 1710768,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.3375,
+        "tier1_gpu_overflow": 0.634375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28722,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w1.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 223,
+      "eviction_count": 216,
+      "avg_latency_ms": 0.3798082812499987,
+      "overall_hit_rate": 0.303125,
+      "bytes_moved": 1800672,
+      "demand_bytes_moved": 1800672,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.303125,
+        "tier1_gpu_overflow": 0.66875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28722,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w6.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 165,
+      "eviction_count": 158,
+      "avg_latency_ms": 0.3173093749999988,
+      "overall_hit_rate": 0.484375,
+      "bytes_moved": 1325486,
+      "demand_bytes_moved": 1325486,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.484375,
+        "tier1_gpu_overflow": 0.4875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28722,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w6.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 170,
+      "eviction_count": 163,
+      "avg_latency_ms": 0.3226070312499985,
+      "overall_hit_rate": 0.46875,
+      "bytes_moved": 1365296,
+      "demand_bytes_moved": 1365296,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.46875,
+        "tier1_gpu_overflow": 0.503125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28732,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w6.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 180,
+      "eviction_count": 173,
+      "avg_latency_ms": 0.33334609374999846,
+      "overall_hit_rate": 0.4375,
+      "bytes_moved": 1446756,
+      "demand_bytes_moved": 1446756,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.4375,
+        "tier1_gpu_overflow": 0.534375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28746,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w12.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 145,
+      "eviction_count": 138,
+      "avg_latency_ms": 0.29571109374999865,
+      "overall_hit_rate": 0.546875,
+      "bytes_moved": 1161028,
+      "demand_bytes_moved": 1161028,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.546875,
+        "tier1_gpu_overflow": 0.425
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28732,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w12.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 157,
+      "eviction_count": 150,
+      "avg_latency_ms": 0.30853749999999847,
+      "overall_hit_rate": 0.509375,
+      "bytes_moved": 1258006,
+      "demand_bytes_moved": 1258006,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.509375,
+        "tier1_gpu_overflow": 0.4625
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28746,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "periodic_reuse",
+    "policy": "regret_aware_w12.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 159,
+      "eviction_count": 152,
+      "avg_latency_ms": 0.31068187499999894,
+      "overall_hit_rate": 0.503125,
+      "bytes_moved": 1274254,
+      "demand_bytes_moved": 1274254,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.503125,
+        "tier1_gpu_overflow": 0.46875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 28722,
+        "tier1_gpu_overflow": 12398,
+        "tier2_host_ram": 0,
+        "tier3_nvme_like": 4188
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "lru",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 320,
+      "eviction_count": 632,
+      "avg_latency_ms": 3.6635503124999937,
+      "overall_hit_rate": 0.0,
+      "bytes_moved": 4014140,
+      "demand_bytes_moved": 4014140,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier2_host_ram": 0.621875,
+        "tier1_gpu_overflow": 0.03125,
+        "tier3_nvme_like": 0.05
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 29916,
+        "tier1_gpu_overflow": 63842,
+        "tier2_host_ram": 249290,
+        "tier3_nvme_like": 63658
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "cost_aware",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 292,
+      "eviction_count": 539,
+      "avg_latency_ms": 3.222582656250001,
+      "overall_hit_rate": 0.08750000000000002,
+      "bytes_moved": 3501264,
+      "demand_bytes_moved": 3501264,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.0875,
+        "tier1_gpu_overflow": 0.140625,
+        "tier2_host_ram": 0.434375,
+        "tier3_nvme_like": 0.040625
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 29828,
+        "tier1_gpu_overflow": 63850,
+        "tier2_host_ram": 248600,
+        "tier3_nvme_like": 63520
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w1.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 296,
+      "eviction_count": 529,
+      "avg_latency_ms": 2.9686585937500025,
+      "overall_hit_rate": 0.07499999999999996,
+      "bytes_moved": 3475324,
+      "demand_bytes_moved": 3475324,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.075,
+        "tier1_gpu_overflow": 0.16875,
+        "tier2_host_ram": 0.446875,
+        "tier3_nvme_like": 0.0125
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 29986,
+        "tier1_gpu_overflow": 63766,
+        "tier2_host_ram": 248690,
+        "tier3_nvme_like": 63152
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w1.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 296,
+      "eviction_count": 536,
+      "avg_latency_ms": 3.0644717187500015,
+      "overall_hit_rate": 0.07499999999999996,
+      "bytes_moved": 3505424,
+      "demand_bytes_moved": 3505424,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.075,
+        "tier1_gpu_overflow": 0.159375,
+        "tier2_host_ram": 0.446875,
+        "tier3_nvme_like": 0.021875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 29974,
+        "tier1_gpu_overflow": 63882,
+        "tier2_host_ram": 248690,
+        "tier3_nvme_like": 63172
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w1.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 296,
+      "eviction_count": 541,
+      "avg_latency_ms": 3.1744671875000017,
+      "overall_hit_rate": 0.07499999999999996,
+      "bytes_moved": 3526272,
+      "demand_bytes_moved": 3526272,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.075,
+        "tier1_gpu_overflow": 0.153125,
+        "tier2_host_ram": 0.440625,
+        "tier3_nvme_like": 0.034375
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 29974,
+        "tier1_gpu_overflow": 63882,
+        "tier2_host_ram": 248662,
+        "tier3_nvme_like": 63228
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w6.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 298,
+      "eviction_count": 543,
+      "avg_latency_ms": 3.0781378124999983,
+      "overall_hit_rate": 0.06874999999999998,
+      "bytes_moved": 3544184,
+      "demand_bytes_moved": 3544184,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier1_gpu_overflow": 0.140625,
+        "tier0_gpu_fast": 0.06875,
+        "tier2_host_ram": 0.475,
+        "tier3_nvme_like": 0.01875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 29798,
+        "tier1_gpu_overflow": 63704,
+        "tier2_host_ram": 248820,
+        "tier3_nvme_like": 63144
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w6.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 296,
+      "eviction_count": 530,
+      "avg_latency_ms": 3.015298593749999,
+      "overall_hit_rate": 0.07499999999999996,
+      "bytes_moved": 3479986,
+      "demand_bytes_moved": 3479986,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier1_gpu_overflow": 0.171875,
+        "tier0_gpu_fast": 0.075,
+        "tier2_host_ram": 0.4375,
+        "tier3_nvme_like": 0.01875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 30024,
+        "tier1_gpu_overflow": 63458,
+        "tier2_host_ram": 249046,
+        "tier3_nvme_like": 63160
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w6.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 294,
+      "eviction_count": 534,
+      "avg_latency_ms": 3.0649564062500008,
+      "overall_hit_rate": 0.08125000000000004,
+      "bytes_moved": 3488788,
+      "demand_bytes_moved": 3488788,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.08125,
+        "tier1_gpu_overflow": 0.15,
+        "tier2_host_ram": 0.45,
+        "tier3_nvme_like": 0.021875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 29846,
+        "tier1_gpu_overflow": 63768,
+        "tier2_host_ram": 248806,
+        "tier3_nvme_like": 63276
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w12.0_h12",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 304,
+      "eviction_count": 556,
+      "avg_latency_ms": 3.1199284374999956,
+      "overall_hit_rate": 0.050000000000000044,
+      "bytes_moved": 3625512,
+      "demand_bytes_moved": 3625512,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier1_gpu_overflow": 0.140625,
+        "tier2_host_ram": 0.49375,
+        "tier0_gpu_fast": 0.05,
+        "tier3_nvme_like": 0.01875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 29764,
+        "tier1_gpu_overflow": 63618,
+        "tier2_host_ram": 248952,
+        "tier3_nvme_like": 63144
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w12.0_h24",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 296,
+      "eviction_count": 540,
+      "avg_latency_ms": 3.0716020312499985,
+      "overall_hit_rate": 0.07499999999999996,
+      "bytes_moved": 3523790,
+      "demand_bytes_moved": 3523790,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier1_gpu_overflow": 0.1375,
+        "tier0_gpu_fast": 0.075,
+        "tier2_host_ram": 0.471875,
+        "tier3_nvme_like": 0.01875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 30024,
+        "tier1_gpu_overflow": 63572,
+        "tier2_host_ram": 249272,
+        "tier3_nvme_like": 63128
+      }
+    }
+  },
+  {
+    "scenario": "constrained",
+    "workload": "adversarial_burst",
+    "policy": "regret_aware_w12.0_h96",
+    "quantization_scheme": "fp16",
+    "prefetch_enabled": false,
+    "metrics": {
+      "accesses": 320,
+      "miss_count": 298,
+      "eviction_count": 540,
+      "avg_latency_ms": 3.0798281250000015,
+      "overall_hit_rate": 0.06874999999999998,
+      "bytes_moved": 3530436,
+      "demand_bytes_moved": 3530436,
+      "prefetch_bytes_moved": 0,
+      "prefetch_requests": 0,
+      "useful_prefetches": 0,
+      "wasted_prefetches": 0,
+      "prefetch_usefulness": 0.0,
+      "tier_hit_rate": {
+        "tier0_gpu_fast": 0.06875,
+        "tier1_gpu_overflow": 0.15625,
+        "tier2_host_ram": 0.45625,
+        "tier3_nvme_like": 0.021875
+      },
+      "peak_footprint_bytes": {
+        "tier0_gpu_fast": 30024,
+        "tier1_gpu_overflow": 63784,
+        "tier2_host_ram": 248736,
+        "tier3_nvme_like": 63158
+      }
+    }
+  }
+]

@@ -116,6 +116,15 @@ These are **simulator findings on synthetic traces**, not runtime performance cl
 - On `small_fp16_prefetch` + `prefetch_friendly`, the `predictive` policy cut misses by `59.6%` versus `lru`, but still had `29.2%` higher latency than `cost_aware`. Lower miss count did not automatically mean a better latency outcome once speculative traffic was included.
 - Under the same small no-prefetch tier budget, switching from `fp16` to `int4` on `rag_burst` raised mean overall hit rate from `0.459` to `0.771` and reduced bytes moved by `93.9%`. Footprint alone can dominate policy differences under pressure.
 
+### Regret-Aware Ablation
+
+A dedicated ablation study (see `scripts/run_regret_ablation.py`) sweeps `regret_horizon` and `regret_weight` parameters to isolate the policy's theoretical advantages on simulated traces without prefetch noise:
+
+- **Adversarial Bursts:** Under constrained capacity on `adversarial_burst`, baseline `lru` experienced `3.66 ms` average latency. `cost_aware` dropped this to `3.22 ms`. The best Regret-Aware config (`weight=1.0, horizon=12`) outperformed both at `2.96 ms` latency, minimizing thrashing by anchoring high-regret pages locally.
+- **Horizon Sensitivity:** Shorter horizons (12-24 steps) generally yielded better latency characteristics than long horizons (96 steps) under severe pressure, suggesting that "forgetting" past regret is necessary when working sets turn over continuously.
+- **Failure/Neutral Case:** On purely recency-heavy traces like `chat_continuation`, `regret_aware` provided exactly identical hit rates and latency as bare `lru` (`0.323 ms`), confirming that regret logic offers no advantage when older pages inherently never return.
+
+
 ## Benchmarks And Metrics
 
 The default sweep reports:

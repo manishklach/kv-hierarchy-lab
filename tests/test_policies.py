@@ -76,3 +76,32 @@ def test_regret_aware_policy_protects_recently_regretted_page() -> None:
     policy.on_access(_context(4), a, None)
     victim = policy.select_eviction_candidate(_context(5), "tier0", [a, b], incoming_page=_page("c"))
     assert victim.page_id == "b"
+
+
+def test_regret_aware_policy_horizon_expiration() -> None:
+    """A page re-accessed after the regret horizon should not incur a regret penalty."""
+    policy = RegretAwarePolicy(regret_horizon=5, regret_weight=100.0)
+    a, b = _page("a"), _page("b")
+    policy.on_access(_context(1), a, "tier0")
+    policy.on_access(_context(2), b, "tier0")
+    policy.on_evict(_context(3), a, "tier0")
+    # Gap is 10 > horizon (5)
+    policy.on_access(_context(13), a, None)
+    policy.on_access(_context(14), b, "tier0")
+    
+    victim = policy.select_eviction_candidate(_context(15), "tier0", [a, b], incoming_page=_page("c"))
+    assert victim.page_id == "a"
+
+
+def test_regret_aware_decay() -> None:
+    """Regret scores should decay on subsequent accesses."""
+    policy = RegretAwarePolicy(regret_horizon=10, regret_weight=1.0, decay=0.5)
+    a = _page("a")
+    policy.on_access(_context(1), a, "tier0")
+    policy.on_evict(_context(2), a, "tier0")
+    policy.on_access(_context(4), a, None)
+    score1 = policy.regret_score.get("a", 0.0)
+    
+    policy.on_access(_context(5), a, "tier0")
+    score2 = policy.regret_score.get("a", 0.0)
+    assert score2 == score1 * 0.5
