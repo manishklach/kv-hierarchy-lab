@@ -38,6 +38,9 @@ class BasePolicy(Protocol):
     def on_evict(self, context: PolicyContext, page: KVPage, tier_name: str) -> None:
         """Updates policy state when a page leaves a tier."""
 
+    def on_promote(self, context: PolicyContext, page: KVPage, src_tier: str | None, dst_tier: str) -> None:
+        """Updates policy state when a page is promoted between tiers."""
+
     def select_eviction_candidate(
         self,
         context: PolicyContext,
@@ -70,6 +73,9 @@ class PolicyBase:
         return None
 
     def on_evict(self, context: PolicyContext, page: KVPage, tier_name: str) -> None:
+        return None
+
+    def on_promote(self, context: PolicyContext, page: KVPage, src_tier: str | None, dst_tier: str) -> None:
         return None
 
     def maybe_prefetch(self, context: PolicyContext, page: KVPage) -> list[str]:

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -18,12 +19,15 @@ from kv_hierarchy_lab.policies import (
     HeavyHitterPolicy,
     LRUPolicy,
     PredictivePrefetchPolicy,
+    RegretAwarePolicy,
     WindowedRecencyPolicy,
 )
 from kv_hierarchy_lab.utils.io import ensure_dir
 from kv_hierarchy_lab.workloads import (
+    generate_adversarial_burst,
     generate_chat_continuation,
     generate_long_tail_mix,
+    generate_mixed_locality,
     generate_periodic_reuse,
     generate_prefetch_friendly,
     generate_rag_burst,
@@ -33,7 +37,7 @@ from kv_hierarchy_lab.workloads import (
 def main() -> None:
     """CLI entrypoint."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output-dir", type=Path, default=Path("output"))
+    parser.add_argument("--output-dir", type=Path, default=Path("artifacts/default_sweep"))
     args = parser.parse_args()
 
     ensure_dir(args.output_dir)
@@ -43,6 +47,8 @@ def main() -> None:
         generate_periodic_reuse,
         generate_long_tail_mix,
         generate_prefetch_friendly,
+        generate_adversarial_burst,
+        generate_mixed_locality,
     ]
     policy_factories = [
         LRUPolicy,
@@ -50,6 +56,7 @@ def main() -> None:
         HeavyHitterPolicy,
         CostAwarePolicy,
         PredictivePrefetchPolicy,
+        RegretAwarePolicy,
     ]
 
     results = []
@@ -61,10 +68,18 @@ def main() -> None:
 
     json_path = args.output_dir / "results.json"
     csv_path = args.output_dir / "results.csv"
+    metadata_path = args.output_dir / "run_metadata.json"
     write_json(results, json_path)
     write_csv(results, csv_path)
+    metadata = {
+        "command": f"python scripts/run_benchmarks.py --output-dir {args.output_dir.as_posix()}",
+        "policies": [factory().name for factory in policy_factories],
+        "workloads": [factory().name for factory in workload_factories],
+        "scenarios": [scenario.name for scenario in example_scenarios()],
+    }
+    metadata_path.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     print(make_summary_table(results))
-    print(f"\nWrote {json_path} and {csv_path}")
+    print(f"\nWrote {json_path}, {csv_path}, and {metadata_path}")
 
 
 if __name__ == "__main__":

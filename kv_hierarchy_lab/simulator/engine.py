@@ -33,8 +33,7 @@ class SimulationEngine:
     metrics: MetricsCollector = field(default_factory=MetricsCollector)
     events: list[SimulationEvent] = field(default_factory=list)
     access_history: list[str] = field(default_factory=list)
-    prefetched_pages: set[str] = field(default_factory=set)
-    useful_prefetches: set[str] = field(default_factory=set)
+    pending_prefetches: set[str] = field(default_factory=set)
 
     def _build_context(self, access: TraceAccess) -> PolicyContext:
         resident_pages = {
@@ -84,6 +83,9 @@ class SimulationEngine:
         size_bytes = tier.remove_page(page.page_id)
         self.metrics.eviction_count += 1
         self.policy.on_evict(context, page, tier.name)
+        if tier.name == self.tiers[0].name and page.page_id in self.pending_prefetches:
+            self.pending_prefetches.remove(page.page_id)
+            self.metrics.record_prefetch(useful=False)
         next_index = self.tiers.index(tier) + 1
         page.current_tier = None
         if next_index < len(self.tiers):
@@ -134,6 +136,12 @@ class SimulationEngine:
         latency_ms = self._transfer_cost(src_tier, target_tier, page)
         self.metrics.record_transfer(page.size_bytes, latency_ms, is_prefetch=is_prefetch)
         self.policy.on_insert(context, page, target_tier.name)
+        self.policy.on_promote(
+            context,
+            page,
+            src_tier.name if src_tier is not None else None,
+            target_tier.name,
+        )
         event_type = "prefetch" if is_prefetch else "promote"
         self.events.append(
             SimulationEvent(
@@ -170,7 +178,7 @@ class SimulationEngine:
                 resident_tier = self._lookup_resident_tier(page.page_id)
                 self._place_in_fast_tier(page, context, resident_tier, is_prefetch=False)
             elif resident_tier.name != self.tiers[0].name:
-                self.metrics.record_miss()
+                self.metrics.record_miss(resident_tier.name)
                 self.policy.on_miss(context, page)
                 self._place_in_fast_tier(page, context, resident_tier, is_prefetch=False)
             else:
@@ -180,8 +188,8 @@ class SimulationEngine:
                 )
                 self.metrics.record_hit(resident_tier.name, latency_ms)
 
-            if page.page_id in self.prefetched_pages and page.page_id not in self.useful_prefetches:
-                self.useful_prefetches.add(page.page_id)
+            if page.page_id in self.pending_prefetches:
+                self.pending_prefetches.remove(page.page_id)
                 self.metrics.record_prefetch(useful=True)
 
             if self.prefetch_enabled:
@@ -198,12 +206,14 @@ class SimulationEngine:
                         candidate_tier = self._lookup_resident_tier(candidate_id)
                     if candidate_tier is None:
                         continue
-                    self.prefetched_pages.add(candidate_id)
+                    if candidate_id in self.pending_prefetches:
+                        continue
+                    self.pending_prefetches.add(candidate_id)
                     self.metrics.record_prefetch()
                     self._place_in_fast_tier(candidate, context, candidate_tier, is_prefetch=True)
 
             self.access_history.append(page.page_id)
             self.metrics.tier_peak_bytes = {tier.name: tier.peak_used_bytes for tier in self.tiers}
 
-        self.metrics.wasted_prefetches += len(self.prefetched_pages - self.useful_prefetches)
+        self.metrics.wasted_prefetches += len(self.pending_prefetches)
         return SimulationResult(metrics=self.metrics.to_dict(), events=self.events)

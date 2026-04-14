@@ -11,9 +11,11 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from kv_hierarchy_lab.workloads import (
+    generate_adversarial_burst,
     generate_adversarial_prefetch,
     generate_chat_continuation,
     generate_long_tail_mix,
+    generate_mixed_locality,
     generate_periodic_reuse,
     generate_prefetch_friendly,
     generate_rag_burst,
@@ -26,7 +28,9 @@ WORKLOADS = {
     "periodic_reuse": generate_periodic_reuse,
     "long_tail_mix": generate_long_tail_mix,
     "prefetch_friendly": generate_prefetch_friendly,
+    "adversarial_burst": generate_adversarial_burst,
     "adversarial_prefetch": generate_adversarial_prefetch,
+    "mixed_locality": generate_mixed_locality,
 }
 
 

@@ -14,7 +14,10 @@ def load_results_frame(results_path: Path) -> pd.DataFrame:
     """Loads result JSON into a tidy DataFrame."""
     frame = pd.read_json(results_path)
     metrics = pd.json_normalize(frame["metrics"])
-    return pd.concat([frame.drop(columns=["metrics"]), metrics], axis=1)
+    frame = pd.concat([frame.drop(columns=["metrics"]), metrics], axis=1)
+    if "overall_hit_rate" not in frame.columns:
+        frame["overall_hit_rate"] = 1.0 - frame["miss_count"] / frame["accesses"]
+    return frame
 
 
 def plot_bar(frame: pd.DataFrame, metric: str, output_path: Path) -> None:
@@ -48,7 +51,12 @@ def generate_standard_plots(results_path: Path, out_dir: Path) -> list[Path]:
     ensure_dir(out_dir)
     frame = load_results_frame(results_path)
     outputs = []
-    for metric in ["avg_latency_ms", "bytes_moved", "prefetch_usefulness", "miss_count"]:
+    for metric in [
+        "overall_hit_rate",
+        "avg_latency_ms",
+        "bytes_moved",
+        "prefetch_usefulness",
+    ]:
         path = out_dir / f"{metric}.png"
         plot_bar(frame, metric, path)
         outputs.append(path)

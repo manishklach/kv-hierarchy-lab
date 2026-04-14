@@ -1,0 +1,27 @@
+{
+  "command": "python scripts/run_benchmarks.py --output-dir artifacts/default_sweep",
+  "policies": [
+    "lru",
+    "windowed_recency",
+    "heavy_hitter",
+    "cost_aware",
+    "predictive",
+    "regret_aware"
+  ],
+  "workloads": [
+    "chat_continuation",
+    "rag_burst",
+    "periodic_reuse",
+    "long_tail_mix",
+    "prefetch_friendly",
+    "adversarial_burst",
+    "mixed_locality"
+  ],
+  "scenarios": [
+    "small_fp16_prefetch",
+    "small_fp16_no_prefetch",
+    "small_int4_no_prefetch",
+    "base_fp8_prefetch",
+    "constrained_fp16_prefetch"
+  ]
+}

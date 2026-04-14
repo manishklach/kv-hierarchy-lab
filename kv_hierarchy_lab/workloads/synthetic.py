@@ -152,3 +152,49 @@ def generate_adversarial_prefetch(
         else:
             trace.append(f"page-{rng.randrange(num_pages // 2, num_pages)}")
     return _wrap_trace("adversarial_prefetch", trace, pages)
+
+
+def generate_adversarial_burst(
+    num_pages: int = 96,
+    length: int = 320,
+    burst_size: int = 12,
+    quantization_scheme: str = "fp16",
+    seed: int = 29,
+) -> SyntheticWorkload:
+    """Generates bursts that revisit recently evicted pages after short gaps."""
+    rng = random.Random(seed)
+    pages = _build_pages(num_pages, base_scalars=2112, quantization_scheme=quantization_scheme, seed=seed)
+    early = [f"page-{index}" for index in range(num_pages // 3)]
+    middle = [f"page-{index}" for index in range(num_pages // 3, 2 * num_pages // 3)]
+    late = [f"page-{index}" for index in range(2 * num_pages // 3, num_pages)]
+    trace: list[str] = []
+    while len(trace) < length:
+        anchor = rng.sample(early, k=min(burst_size, len(early)))
+        trace.extend(anchor)
+        trace.extend(rng.sample(middle, k=min(burst_size, len(middle))))
+        trace.extend(anchor[: max(1, min(burst_size // 2, len(anchor)))])
+        trace.extend(rng.sample(late, k=min(burst_size, len(late))))
+    return _wrap_trace("adversarial_burst", trace[:length], pages)
+
+
+def generate_mixed_locality(
+    num_pages: int = 112,
+    length: int = 360,
+    quantization_scheme: str = "fp16",
+    seed: int = 31,
+) -> SyntheticWorkload:
+    """Generates phased locality shifts across hot, tail, and periodic regions."""
+    rng = random.Random(seed)
+    pages = _build_pages(num_pages, base_scalars=2176, quantization_scheme=quantization_scheme, seed=seed)
+    hot = [f"page-{index}" for index in range(12)]
+    tail = [f"page-{index}" for index in range(12, num_pages)]
+    trace: list[str] = []
+    for step in range(length):
+        phase = (step // 60) % 3
+        if phase == 0:
+            trace.append(rng.choice(hot))
+        elif phase == 1:
+            trace.append(rng.choice(tail[:20]))
+        else:
+            trace.append(f"page-{(step * 5) % num_pages}")
+    return _wrap_trace("mixed_locality", trace, pages)

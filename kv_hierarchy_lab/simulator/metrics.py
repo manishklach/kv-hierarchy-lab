@@ -26,10 +26,12 @@ class MetricsCollector:
         self.total_latency_ms += latency_ms
         self.tier_hits[tier_name] = self.tier_hits.get(tier_name, 0) + 1
 
-    def record_miss(self) -> None:
-        """Records a miss."""
+    def record_miss(self, resident_tier: str | None = None) -> None:
+        """Records a miss, optionally noting which lower tier served the page."""
         self.total_accesses += 1
         self.miss_count += 1
+        if resident_tier is not None:
+            self.tier_hits[resident_tier] = self.tier_hits.get(resident_tier, 0) + 1
 
     def record_transfer(self, bytes_moved: int, latency_ms: float, is_prefetch: bool) -> None:
         """Records a data transfer."""
@@ -55,6 +57,7 @@ class MetricsCollector:
         prefetch_usefulness = (
             self.useful_prefetches / self.prefetch_requests if self.prefetch_requests else 0.0
         )
+        overall_hit_rate = 1.0 - (self.miss_count / self.total_accesses) if self.total_accesses else 0.0
         tier_hit_rate = {
             tier: hits / self.total_accesses if self.total_accesses else 0.0
             for tier, hits in self.tier_hits.items()
@@ -64,6 +67,7 @@ class MetricsCollector:
             "miss_count": self.miss_count,
             "eviction_count": self.eviction_count,
             "avg_latency_ms": avg_latency,
+            "overall_hit_rate": overall_hit_rate,
             "bytes_moved": self.total_bytes_moved,
             "demand_bytes_moved": self.demand_bytes_moved,
             "prefetch_bytes_moved": self.prefetch_bytes_moved,

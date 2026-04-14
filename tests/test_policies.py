@@ -1,6 +1,11 @@
 """Policy behavior tests."""
 
-from kv_hierarchy_lab.policies import HeavyHitterPolicy, LRUPolicy, PredictivePrefetchPolicy
+from kv_hierarchy_lab.policies import (
+    HeavyHitterPolicy,
+    LRUPolicy,
+    PredictivePrefetchPolicy,
+    RegretAwarePolicy,
+)
 from kv_hierarchy_lab.policies.base import PolicyContext
 from kv_hierarchy_lab.simulator.page import KVPage
 from kv_hierarchy_lab.simulator.trace import TraceAccess
@@ -59,3 +64,15 @@ def test_predictive_policy_learns_simple_transition() -> None:
     policy.on_access(_context(3), a, "tier0")
     policy.on_access(_context(4), b, "tier0")
     assert policy.maybe_prefetch(_context(5), a) == ["b"]
+
+
+def test_regret_aware_policy_protects_recently_regretted_page() -> None:
+    """A page re-accessed soon after eviction should become harder to evict again."""
+    policy = RegretAwarePolicy(regret_horizon=8, regret_weight=10.0)
+    a, b = _page("a"), _page("b")
+    policy.on_access(_context(1), a, "tier0")
+    policy.on_access(_context(2), b, "tier0")
+    policy.on_evict(_context(3), a, "tier0")
+    policy.on_access(_context(4), a, None)
+    victim = policy.select_eviction_candidate(_context(5), "tier0", [a, b], incoming_page=_page("c"))
+    assert victim.page_id == "b"

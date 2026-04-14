@@ -1,268 +1,250 @@
 # kv-hierarchy-lab
 
-**A trace-driven research harness for studying KV-cache residency, eviction, quantization, offload, and prefetch in long-context LLM inference.**
+**Trace-driven policy evaluation for KV-cache hierarchy decisions in long-context LLM inference**
 
-Modern long-context inference is often limited not just by compute, but by KV-cache residency and movement. Many ideas exist in isolation - paging, offload, quantization, token selection, predictive fetch - but comparing them cleanly is difficult. `kv-hierarchy-lab` provides a trace-driven, reproducible environment for studying those tradeoffs with a benchmark-first, claim-light approach.
+`kv-hierarchy-lab` is a benchmark-first research harness for studying KV-cache residency, eviction, quantization, offload, and prefetch tradeoffs under long-context decoding. It is designed for reproducible simulator studies today, and for future integration with real runtimes later.
 
-The current version is hardware-aware but hardware-agnostic: it models tiers, costs, and policies without claiming a production kernel or runtime implementation. It is designed to support future runtime integration, not to pretend that simulation is deployment.
+Modern long-context inference is often limited not just by compute, but by KV-cache residency and movement. Many ideas exist in isolation, but comparing them cleanly is awkward. This repo provides a hardware-aware, hardware-agnostic v0.1 environment for asking those questions without pretending to be a production serving stack.
 
 ## Why This Repo Exists
 
-Long-context serving discussions often mix together multiple concerns:
+Long-context serving work often blends together:
 
 - which KV pages stay resident in the fastest tier
-- which pages should be evicted or demoted
-- when quantization changes the right residency decision
-- how much traffic prefetch creates versus saves
-- how trace structure changes policy rankings
+- which pages should be demoted or evicted
+- when footprint reduction changes the right residency choice
+- whether prefetch reduces misses or only adds traffic
+- how much a result depends on trace structure rather than policy quality
 
-There is a lot of good systems intuition in the space, but much of it is hard to compare because evaluation setups differ, trace assumptions are hidden, and results are not easy to reproduce. This repo exists to make those comparisons more explicit.
+This repo exists to make those tradeoffs inspectable. The goal is not to "solve KV cache inference" in one repo. The goal is to provide a trace-driven, reproducible policy evaluation framework that systems and inference engineers can extend, question, and calibrate.
 
-## What This Repo Is / Is Not
+## What It Is / Is Not
 
 **This repo is:**
 
 - a research harness
 - a policy evaluation framework
-- a bridge between systems ideas and future runtime or kernel integration
-- trace-driven, reproducible, and benchmark-first
-- intended for simulator studies, ablations, and policy prototyping
+- benchmark-first and claim-light
+- reproducible and trace-driven
+- designed to support future runtime integration
 
 **This repo is not:**
 
 - production-ready serving infrastructure
 - a replacement for `vLLM`
-- a claim that KV hierarchy problems are "solved"
-- a magical CXL-backed 1M-token serving stack
-- a repo that already ships custom Hopper kernels
+- a claim of custom kernel or Hopper-specific runtime work
+- a magical CXL-backed 1M-token system
+- a substitute for real GPU profiling
 
-v0.1 focuses on simulation, traces, policies, and evaluation. Future work may integrate with real runtimes such as `vLLM`, and may emulate or later support slower memory tiers such as host RAM or CXL-like backends more faithfully.
+v0.1 focuses on simulation, traces, policies, and evaluation. Future revisions may ingest real traces, calibrate against serving runtimes, and model slower tiers such as host RAM or CXL-like backends with more fidelity.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    W[Workload Generators] --> T[Access Traces]
-    T --> E[Simulation Engine]
-    Q[Quantization Model] --> E
-    P[Policy Interface] --> E
-    E --> M[Metrics Collector]
-    M --> B[Benchmark Runner]
-    B --> R[JSON / CSV Reports]
-    B --> PL[Plots / Notebook Analysis]
-    E --> H[Configurable Memory Tiers]
+    W["Synthetic or Imported Workloads"] --> T["Page Access Traces"]
+    T --> E["Simulation Engine"]
+    Q["Quantization / Footprint Model"] --> E
+    P["Policy Interface"] --> E
+    E --> M["Metrics Collector"]
+    M --> B["Benchmark Runner"]
+    B --> A["Artifacts: JSON, CSV, Plots"]
+    B --> N["Notebook / Analysis"]
 ```
 
-### Access / Miss / Prefetch Flow
-
-```mermaid
-sequenceDiagram
-    participant Trace as Trace
-    participant Engine as Engine
-    participant Policy as Policy
-    participant Tier as Tiers
-    participant Metrics as Metrics
-
-    Trace->>Engine: next page access
-    Engine->>Policy: on_access(access)
-    Engine->>Tier: check residency
-    alt hit
-        Tier-->>Engine: resident tier
-        Engine->>Metrics: record tier hit
-    else miss
-        Engine->>Policy: on_miss(page)
-        Policy-->>Engine: source tier + victim hints
-        Engine->>Tier: transfer / demote / evict
-        Engine->>Metrics: record miss and bytes moved
-    end
-    Engine->>Policy: maybe_prefetch(context)
-    Policy-->>Engine: prefetch candidates
-    Engine->>Tier: prefetch if capacity allows
-    Engine->>Metrics: record useful or wasted prefetches
-```
+The engine models page movement across configurable tiers, applies policy hooks on access and eviction, and records simulated latency and traffic rather than claiming runtime throughput.
 
 ## Core Concepts
 
 ### KV Pages
 
-The simulator reasons about **KV pages** rather than entire sequences. A page carries:
+The simulator works on **KV pages**, not full sequences. A page carries:
 
 - `page_id`
-- token-span metadata
+- token span
 - layer index
 - head-group metadata
 - byte footprint
 - quantization scheme
-- current residency tier
-
-This keeps the abstraction close to real cache movement decisions without pretending to model every runtime detail.
+- current tier
 
 ### Memory Tiers
 
-v0.1 models configurable tiers such as:
+The default hierarchy models configurable cost tiers such as:
 
 - Tier 0: GPU-fast
-- Tier 1: GPU-slower or overflow
+- Tier 1: GPU-overflow
 - Tier 2: Host RAM
 - Tier 3: NVMe-like backing store
 
-These are costed tiers with configurable capacities, latencies, and bandwidths. They are not hard-coded to a specific machine.
+These tiers are latency and bandwidth models, not claims about exact hardware support.
 
 ### Access Traces
 
-The simulator is **trace-driven**. A trace is a sequence of logical page accesses with timestamps or decode steps plus optional metadata such as sequence id, reuse hints, and whether the access is demand-driven or speculative.
+The harness is **trace-driven**. A trace is a sequence of logical page accesses with decode-step ordering and optional metadata. v0.1 ships synthetic workloads; future revisions can ingest runtime traces.
 
 ### Eviction Policies
 
-Policies decide which pages remain resident in the faster tiers and which pages get demoted or evicted when capacity is tight.
+Policies decide which pages stay in fast tiers, which pages are demoted, and which choices are repeatedly costly.
 
 ### Prefetch Policies
 
-Prefetch policies speculate on near-future accesses. v0.1 includes a lightweight predictive policy based on recent transition structure and reuse frequency. It is intentionally modest and documented as such.
+Prefetch policies speculate on future accesses. In v0.1, the predictive baseline is intentionally modest, and the harness reports usefulness rather than just raw prefetch count.
 
 ### Quantization-Aware Residency
 
-Page size depends on quantization scheme. Smaller pages may remain resident longer, but optional decode penalties can shift the tradeoff. v0.1 models footprint and configurable dequant overhead only; it does not model quality degradation or full-model accuracy.
+Footprint depends on quantization scheme. Smaller pages may improve residency, while optional decode penalties can offset some of that benefit. The simulator models footprint and configurable dequant overhead only; it does not model model quality or accuracy loss.
 
 ## What v0.1 Includes
 
 - a trace-driven KV hierarchy simulator
-- configurable multi-tier memory costs
+- configurable multi-tier latency, capacity, and bandwidth models
 - pluggable policy interfaces
-- baseline policies: LRU, windowed recency, heavy hitter, cost-aware, predictive prefetch
-- quantization-aware page footprints
-- synthetic long-context workload generators
-- benchmark runner with JSON and CSV outputs
-- plotting utilities and a starter notebook
-- tests for engine behavior, quantization, policies, and workloads
+- baseline policies: `lru`, `windowed_recency`, `heavy_hitter`, `cost_aware`, `predictive`
+- a signature `regret_aware` eviction policy
+- quantization-aware page footprints for `fp16`, `fp8`, `int4`, and `int2`
+- synthetic workloads including retrieval bursts, periodic reuse, mixed locality, and adversarial bursts
+- benchmark runner with committed JSON, CSV, and plot artifacts
+- tests for engine behavior, prefetch accounting, quantization, workloads, and policy correctness
+
+## Initial Findings
+
+These are **simulator findings on synthetic traces**, not runtime performance claims.
+
+- On `small_fp16_prefetch` + `rag_burst`, `regret_aware` reduced misses from `212` to `152` versus `lru` and cut bytes moved by `26.3%`.
+- On `constrained_fp16_prefetch` + `adversarial_burst`, `regret_aware` delivered the lowest latency in the sweep: `3.365 ms` average simulated access latency versus `3.664 ms` for `lru`, with `9.5%` fewer bytes moved.
+- On `small_fp16_prefetch` + `prefetch_friendly`, the `predictive` policy cut misses by `59.6%` versus `lru`, but still had `29.2%` higher latency than `cost_aware`. Lower miss count did not automatically mean a better latency outcome once speculative traffic was included.
+- Under the same small no-prefetch tier budget, switching from `fp16` to `int4` on `rag_burst` raised mean overall hit rate from `0.459` to `0.771` and reduced bytes moved by `93.9%`. Footprint alone can dominate policy differences under pressure.
 
 ## Benchmarks And Metrics
 
-The harness reports metrics that are useful for comparing policies without overclaiming:
+The default sweep reports:
 
-- hit rate by tier
-- total miss count
+- overall hit rate by policy
+- hit rate by serving tier
+- miss count
 - average simulated access latency
-- total bytes moved
-- eviction count
+- bytes moved
 - demand versus prefetch traffic
 - useful prefetch ratio
+- eviction count
 - peak footprint per tier
 
-The simulator is designed to answer relative policy questions under controlled assumptions. It does not replace runtime profiling.
+Committed simulator artifacts live under [artifacts/default_sweep](./artifacts/default_sweep).
 
-### Sample Result Schema
+### Default Sweep Figures
 
-```json
-{
-  "scenario": "chat_small_tier_fp16",
-  "policy": "lru",
-  "workload": "chat_continuation",
-  "metrics": {
-    "accesses": 4096,
-    "miss_count": 812,
-    "avg_latency_ms": 0.421,
-    "bytes_moved": 73400320,
-    "prefetch_usefulness": 0.31
-  }
-}
-```
+Simulator outputs generated from the committed default sweep:
+
+![Overall hit rate by policy](artifacts/default_sweep/plots/overall_hit_rate.png)
+![Average latency by policy](artifacts/default_sweep/plots/avg_latency_ms.png)
+![Bytes moved by policy](artifacts/default_sweep/plots/bytes_moved.png)
+![Useful prefetch ratio](artifacts/default_sweep/plots/prefetch_usefulness.png)
+![Latency versus bytes moved](artifacts/default_sweep/plots/latency_vs_bytes_moved.png)
+
+### Result Files
+
+- [results.json](./artifacts/default_sweep/results.json)
+- [results.csv](./artifacts/default_sweep/results.csv)
+- [run_metadata.json](./artifacts/default_sweep/run_metadata.json)
 
 ## Quickstart
 
 ```bash
-git clone https://github.com/your-org/kv-hierarchy-lab.git
+git clone https://github.com/manishklach/kv-hierarchy-lab.git
 cd kv-hierarchy-lab
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 pip install -e .
-pytest
-python scripts/run_benchmarks.py --output-dir output
-python scripts/plot_results.py --results output/results.json --out-dir output/plots
+python -m pytest
 ```
 
-Run a small example:
+Minimal smoke run:
 
 ```bash
 python examples/basic_simulation.py
-python examples/compare_policies.py
+```
+
+## Reproducing The Default Sweep
+
+One-command path with `make`:
+
+```bash
+make test
+make bench
+make plots
+```
+
+Equivalent direct commands:
+
+```bash
+python -m pytest
+python scripts/run_benchmarks.py --output-dir artifacts/default_sweep
+python scripts/plot_results.py --results artifacts/default_sweep/results.json --out-dir artifacts/default_sweep/plots
+```
+
+The committed sweep artifacts were generated with:
+
+```bash
+python scripts/run_benchmarks.py --output-dir artifacts/default_sweep
+python scripts/plot_results.py --results artifacts/default_sweep/results.json --out-dir artifacts/default_sweep/plots
 ```
 
 ## Repository Layout
 
 ```text
 kv-hierarchy-lab/
-├─ kv_hierarchy_lab/      # Core simulator, policies, quantization, workloads, bench
-├─ scripts/               # CLI entry scripts for traces, benchmarks, and plotting
-├─ examples/              # Minimal runnable examples
-├─ notebooks/             # Analysis notebook seed
-└─ tests/                 # Unit tests for simulator behavior
+├─ kv_hierarchy_lab/
+│  ├─ simulator/     # Engine, tier model, traces, metrics
+│  ├─ policies/      # Eviction and prefetch policies
+│  ├─ quant/         # Footprint and decode-penalty models
+│  ├─ workloads/     # Synthetic workload generators
+│  ├─ bench/         # Scenarios, runner, report helpers
+│  └─ utils/         # Plotting and I/O helpers
+├─ scripts/          # Benchmark, trace, and plotting entrypoints
+├─ artifacts/        # Committed simulator outputs for inspection
+├─ examples/         # Small runnable examples
+├─ notebooks/        # Analysis notebook seed
+└─ tests/            # Unit tests
 ```
 
-## Research Questions This Repo Helps Answer
+## Adding A New Policy
 
-- How sensitive are policy rankings to tier-capacity ratios?
-- When does quantization reduce bytes moved enough to offset decode overhead?
-- Which trace families benefit from predictive prefetch, and which punish it?
-- How often does a frequency-biased policy beat pure recency under long-tail reuse?
-- How much simulated latency reduction comes from better residency versus lower transfer volume?
-- Which policies are robust across mixed chat, retrieval, and periodic reuse patterns?
+1. Subclass `PolicyBase` or match the `BasePolicy` protocol.
+2. Implement `select_eviction_candidate`.
+3. Optionally implement `maybe_prefetch` and `on_promote`.
+4. Keep internal state in `on_access`, `on_insert`, and `on_evict`.
+5. Export the new policy from `kv_hierarchy_lab/policies/__init__.py`.
+6. Compare it with `python examples/compare_policies.py` or the default sweep.
+
+The signature `regret_aware` policy is a good reference because it adds a distinct idea without introducing runtime-specific complexity.
+
+## Open Research Questions
+
+- When does a regret signal beat plain recency or frequency under realistic trace churn?
+- How should quantization and residency be co-optimized per layer or head-group?
+- What overlap model is needed before transfer cost becomes a decent proxy for wall time?
+- Which workloads most consistently punish speculative prefetch despite high apparent reuse?
+- How should offline oracle analyses be used to bound achievable policy gains?
 
 ## Caveats / Honesty Notes
 
-- Synthetic traces are useful, but they are not equivalent to full-model correctness.
-- Simulated latency is a model, not a substitute for actual GPU or runtime profiling.
-- Tier names in v0.1 are abstractions over configurable cost models, not exact hardware contracts.
-- Predictive prefetch in this repo is intentionally lightweight and should be read as a baseline.
-- Future integrations may connect this harness to real runtimes such as `vLLM`, but that is not what v0.1 claims.
-
-## Planned Future Work
-
-- trace ingestion from runtime instrumentation
-- tighter decode-step timing models
-- richer multi-tenant and batched-serving traces
-- more explicit transfer concurrency and overlap modeling
-- runtime adapters for real serving stacks
-- hardware-calibrated backends for host RAM and CXL-like tiers
-- smarter learned predictors once the benchmark protocol is stable
-
-## Open Research Directions
-
-- jointly optimizing quantization and residency per layer or head-group
-- modeling overlap between compute and transfer rather than pure additive latency
-- selective retention for attention-relevant pages under retrieval-heavy traces
-- offline oracle comparisons for upper-bound policy analysis
-- building trace suites from real workloads without leaking proprietary serving traces
+- Synthetic traces are not substitutes for full-model correctness.
+- Simulated latency is not a substitute for real GPU profiling.
+- Tier names are abstractions over cost models, not direct hardware contracts.
+- The committed figures are simulator artifacts, not runtime benchmarks.
+- Future runtime integrations may connect this harness to systems such as `vLLM`, but that is future work, not a current claim.
 
 ## Roadmap
 
-| Version | Focus | Status |
+| Milestone | Focus | Concrete next step |
 | --- | --- | --- |
-| v0.1 | Trace-driven simulator, baseline policies, synthetic workloads, benchmark harness | Included |
-| v0.2 | Runtime trace ingestion, richer event model, better transfer overlap modeling | Planned |
-| v0.3 | Runtime integration experiments, calibrated tier backends, policy training loops | Exploratory |
+| v0.1 | Trace-driven simulator, baselines, artifacts, reproducibility | Landed in this repo |
+| v0.2 | Runtime trace ingestion and calibrated event model | Import serving traces and replay them through the same benchmark harness |
+| v0.3 | Better overlap and concurrency modeling | Add explicit transfer concurrency and compute-overlap assumptions |
+| v0.4 | Runtime integration experiments | Attach the harness to a real serving runtime for trace capture and replay |
 
-## How To Extend With A New Policy
+## License / Contribution Note
 
-1. Subclass `BasePolicy`.
-2. Implement `select_eviction_candidate` and optionally `maybe_prefetch`.
-3. Use `on_access`, `on_insert`, and `on_evict` to maintain internal state.
-4. Add the policy to `kv_hierarchy_lab/policies/__init__.py`.
-5. Compare it with `python examples/compare_policies.py` or the benchmark runner.
-
-## Contribution Guidelines
-
-Contributions are welcome, especially in:
-
-- better trace models
-- clearer benchmark scenarios
-- policy baselines and oracle analyses
-- runtime-integration adapters
-- documentation and reproducibility improvements
-
-Please keep the tone empirical and claim-light. If a contribution introduces a performance claim, it should include the trace assumptions, simulator configuration, and reproduction steps.
-
-## License
-
-This repository is released under the MIT License. See [LICENSE](./LICENSE).
+This repository is released under the MIT License. Contributions are welcome, especially around trace ingestion, better workload suites, calibrated tier models, and policy ablations. Please keep changes empirical, reproducible, and careful about what is and is not being claimed.

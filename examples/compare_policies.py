@@ -15,21 +15,23 @@ from kv_hierarchy_lab.policies import (
     HeavyHitterPolicy,
     LRUPolicy,
     PredictivePrefetchPolicy,
+    RegretAwarePolicy,
     WindowedRecencyPolicy,
 )
-from kv_hierarchy_lab.workloads import generate_prefetch_friendly
+from kv_hierarchy_lab.workloads import generate_adversarial_burst
 
 
 def main() -> None:
     """CLI entrypoint."""
     scenario = example_scenarios()[0]
-    workload = generate_prefetch_friendly(quantization_scheme=scenario.quantization_scheme)
+    workload = generate_adversarial_burst(quantization_scheme=scenario.quantization_scheme)
     policies = [
         LRUPolicy(),
         WindowedRecencyPolicy(),
         HeavyHitterPolicy(),
         CostAwarePolicy(),
         PredictivePrefetchPolicy(),
+        RegretAwarePolicy(),
     ]
     results = [run_benchmark(scenario, workload, policy) for policy in policies]
     print(make_summary_table(results))
